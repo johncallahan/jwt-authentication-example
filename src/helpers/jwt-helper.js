@@ -6,18 +6,18 @@ function createJwtCookie(userId, email) {
     "-----BEGIN RSA PRIVATE KEY-----\n" +
     process.env.JWT_SECRET_KEY +
     "\n-----END RSA PRIVATE KEY-----";
-
+  console.log("i am here 1");
   const token = jwt.sign({ userId, email }, secretKey, {
     algorithm: "RS256",
     expiresIn: "100 days"
   });
-
+  console.log("i am here 2");
   const jwtCookie = cookie.serialize("jwt", token, {
     secure: process.env.NETLIFY_DEV !== "true",
     httpOnly: true,
     path: "/"
   });
-
+  console.log("i am here 3");
   return jwtCookie;
 }
 
