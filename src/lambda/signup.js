@@ -7,8 +7,11 @@ export async function handler(event) {
   let errorStatusCode = 500;
 
   try {
+    console.log("1");
     await dbClient.connect();
+    console.log("2");
     const users = dbClient.usersCollection();
+    console.log("3");
 
     const { email, password } = JSON.parse(event.body);
 
