@@ -33,14 +33,17 @@ export async function handler(event) {
       password: passwordHash
     });
     console.log("reached 7");
-
+    cookie = createJwtCookie(insertedId, email);
+    console.log("reached 8");
+    body = JSON.stringify({ id: insertedId, email });
+    console.log("reached 9");
     return {
       statusCode: 200,
       headers: {
-        "Set-Cookie": createJwtCookie(insertedId, email),
+        "Set-Cookie": cookie,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ id: insertedId, email })
+      body: body
     };
   } catch (err) {
     return {
