@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 export async function handler(event) {
   const cookies = event.headers.cookie && cookie.parse(event.headers.cookie);
-
+  console.log("user 1");
   if (!cookies || !cookies.jwt) {
     return {
       statusCode: 401,
@@ -13,7 +13,7 @@ export async function handler(event) {
       })
     };
   }
-
+  console.log("user 2");
   try {
     // verify throws an error if it can't verify the jwt.
     // By default it also checks the exp claim, which is
