@@ -7,26 +7,32 @@ export async function handler(event) {
   let errorStatusCode = 500;
 
   try {
-    console.log("1");
+    console.log("reached 1");
     await dbClient.connect();
-    console.log("2");
+    console.log("reached 2");
     const users = dbClient.usersCollection();
-    console.log("3");
+    console.log("reached 3");
 
     const { email, password } = JSON.parse(event.body);
+    
+    console.log(email);
 
     const existingUser = await users.findOne({ email });
+    console.log("reached 4");
     if (existingUser !== null) {
       errorStatusCode = 409;
       throw new Error(`A user already exists with the email: ${email}`);
     }
+    console.log("reached 5");
 
     const passwordHash = await bcrypt.hash(password, 10);
+    console.log("reached 6");
 
     const { insertedId } = await users.insertOne({
       email,
       password: passwordHash
     });
+    console.log("reached 7");
 
     return {
       statusCode: 200,
