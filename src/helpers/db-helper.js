@@ -4,7 +4,7 @@ const dbName = "jwt-authentication-example";
 
 function createClient() {
   const client = new MongoClient(
-    `${process.env.MONGODB_PATH`,
+    `${process.env.MONGODB_PATH}`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   );
 
